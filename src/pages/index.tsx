@@ -1,10 +1,32 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import Head from "next/head";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+if (typeof window !== undefined) gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const comp = useRef<HTMLElement>(null); // create a ref for the root level element (for scoping)
+  const box = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context((self) => {
+      console.log(box.current);
+      if (box.current) {
+        gsap.to(box.current, {
+          x: 500,
+          scrollTrigger: {
+            trigger: box.current,
+            start: "top 80%",
+            end: "bottom 20%",
+          },
+        });
+      }
+    }, comp);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="flex h-screen flex-col">
       <Head>
@@ -14,11 +36,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="h-[8vh]" />
-      <div className="hide-scrollbar md:scroll-snap-container flex flex-1 flex-col overflow-x-hidden overflow-y-scroll">
-        <main>
-          <div className="scroll-snap-align-start h-[92vh] bg-red-200"></div>
-          <div className="scroll-snap-align-start h-[92vh] bg-green-200"></div>
-          <div className="scroll-snap-align-start h-[92vh] bg-blue-200"></div>
+      <div className="hide-scrollbar flex flex-1 flex-col">
+        <main ref={comp}>
+          <div className="h-[92vh] bg-red-200"></div>
+          <div className="section-2 h-[92vh] bg-green-200">
+            <div
+              ref={box}
+              className="box bg-black h-10 w-10 relative top-48"
+            ></div>
+          </div>
+          <div className="h-[92vh] bg-blue-200"></div>
         </main>
       </div>
     </div>

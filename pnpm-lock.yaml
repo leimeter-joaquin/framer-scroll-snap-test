@@ -7,6 +7,7 @@ specifiers:
   autoprefixer: 10.4.14
   eslint: 8.38.0
   eslint-config-next: 13.3.0
+  gsap: ^3.11.5
   next: 13.3.0
   postcss: 8.4.21
   react: 18.2.0
@@ -21,6 +22,7 @@ dependencies:
   autoprefixer: 10.4.14_postcss@8.4.21
   eslint: 8.38.0
   eslint-config-next: 13.3.0_voubu7prgxjfsfbgx5d4sqnwiy
+  gsap: 3.11.5
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.21
   react: 18.2.0
@@ -1333,6 +1335,10 @@ packages:
 
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
+    dev: false
+
+  /gsap/3.11.5:
+    resolution: {integrity: sha512-Q89nKCLgoX5xUjznh9LcaIUkz54k1voNucT1Rpf9SJNFIQznBwFqt5qUUQbeVInFyN/n18OUJkpeI6CNEDt74w==}
     dev: false
 
   /has-bigints/1.0.2:
