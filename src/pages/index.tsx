@@ -36,18 +36,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="h-[8vh]" />
-      <div className="hide-scrollbar flex flex-1 flex-col">
-        <main ref={comp}>
-          <div className="h-[92vh] bg-red-200"></div>
-          <div className="section-2 h-[92vh] bg-green-200">
-            <div
-              ref={box}
-              className="box bg-black h-10 w-10 relative top-48"
-            ></div>
-          </div>
-          <div className="h-[92vh] bg-blue-200"></div>
-        </main>
-      </div>
+      <main ref={comp} className="hide-scrollbar h-[92vh]">
+        <div className="h-full bg-red-200"></div>
+        <div className="h-full section-2 bg-green-200">
+          <div
+            ref={box}
+            className="box bg-black h-10 w-10 relative top-48"
+          ></div>
+        </div>
+        <div className="h-full bg-blue-200"></div>
+      </main>
     </div>
   );
 }
