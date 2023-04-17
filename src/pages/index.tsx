@@ -1,32 +1,14 @@
 import Head from "next/head";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLayoutEffect, useRef } from "react";
 
-if (typeof window !== undefined) gsap.registerPlugin(ScrollTrigger);
+import { motion } from "framer-motion";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+import logo from "public/logo.png";
+import image from "public/image.webp";
 
 export default function Home() {
-  const comp = useRef<HTMLElement>(null); // create a ref for the root level element (for scoping)
-  const box = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    let ctx = gsap.context((self) => {
-      console.log(box.current);
-      if (box.current) {
-        gsap.to(box.current, {
-          x: 500,
-          scrollTrigger: {
-            trigger: box.current,
-            start: "top 80%",
-            end: "bottom 20%",
-          },
-        });
-      }
-    }, comp);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <div className="flex h-screen flex-col">
       <Head>
@@ -35,16 +17,63 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="h-[8vh]" />
-      <main ref={comp} className="hide-scrollbar h-[92vh]">
-        <div className="h-full bg-red-200"></div>
-        <div className="h-full section-2 bg-green-200">
-          <div
-            ref={box}
-            className="box bg-black h-10 w-10 relative top-48"
-          ></div>
+      <header className="h-[10vh] bg-yellow-400" />
+      <main className="hide-scrollbar scroll-snap-container flex flex-1 flex-col overflow-x-hidden overflow-y-scroll">
+        <div className="scroll-snap-align-start min-h-[90vh] flex flex-col items-center justify-center  bg-red-300">
+          <h1 className="flex min-w-[100%] justify-center gap-4 text-center text-3xl md:text-7xl">
+            <motion.div
+              initial={{ opacity: 0, x: "80vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+              className="font-black text-[#30315B]"
+            >
+              Some
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: "80vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
+              className="font-normal text-[#30315B]"
+            >
+              Random
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: "80vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 1 }}
+              className="font-light text-[#0d8e77]"
+            >
+              Slogan.
+            </motion.div>
+          </h1>
         </div>
-        <div className="h-full bg-blue-200"></div>
+        {/* <div className="scroll-snap-align-start min-h-[90vh] bg-purple-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-orange-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-purple-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-orange-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-purple-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-orange-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-purple-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-orange-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-purple-300"></div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-orange-300"></div> */}
+        <div className="scroll-snap-align-start min-h-[90vh] bg-purple-300">
+          <Image src="/image.webp" alt="asd" className="w-auto" width={1000} height={1000}/>
+        </div><div className="scroll-snap-align-start min-h-[90vh] bg-purple-300">
+          <Image src="/hedg-mock.png" alt="asd" className="w-auto" width={1000} height={1000}/>
+        </div><div className="scroll-snap-align-start min-h-[90vh] bg-purple-300">
+          <Image src="/image.webp" alt="asd" className="w-auto" width={1000} height={1000}/>
+        </div><div className="scroll-snap-align-start min-h-[90vh] bg-purple-300">
+          <Image src="/insta-logo.png" alt="asd" className="w-auto" width={1000} height={1000}/>
+        </div><div className="scroll-snap-align-start min-h-[90vh] bg-purple-300">
+          <Image src="/mock-insta.png" alt="asd" className="w-auto" width={1000} height={1000}/>
+        </div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-orange-300">
+          <Image src={image} alt="asd" className="w-auto" placeholder="blur" />
+        </div>
+        <div className="scroll-snap-align-start min-h-[90vh] bg-red-300">
+          <Image src={image} alt="asd" className="w-auto" placeholder="blur" />
+        </div>
       </main>
     </div>
   );
